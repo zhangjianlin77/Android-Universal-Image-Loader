@@ -51,6 +51,14 @@ public class BaseImageDownloaderTest {
 	}
 
 	@Test
+	public void testSchemeDrawablesName() throws Exception {
+		String uri = "drawablename://icon";//icon.png
+		Scheme result = Scheme.ofUri(uri);
+		Scheme expected = Scheme.DRAWABLE;
+		Assertions.assertThat(result).isEqualTo(expected);
+	}
+
+	@Test
 	public void testSchemeFile() throws Exception {
 		String uri = "file://path/on/the/device/1.png";
 		Scheme result = Scheme.ofUri(uri);

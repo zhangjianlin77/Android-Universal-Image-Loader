@@ -94,6 +94,8 @@ public class BaseImageDownloader implements ImageDownloader {
 				return getStreamFromAssets(imageUri, extra);
 			case DRAWABLE:
 				return getStreamFromDrawable(imageUri, extra);
+			case DRAWABLENAME:
+				return getStreamFromDrawableName(imageUri, extra);
 			case UNKNOWN:
 			default:
 				return getStreamFromOtherSource(imageUri, extra);
@@ -260,6 +262,21 @@ public class BaseImageDownloader implements ImageDownloader {
 	protected InputStream getStreamFromDrawable(String imageUri, Object extra) {
 		String drawableIdString = Scheme.DRAWABLE.crop(imageUri);
 		int drawableId = Integer.parseInt(drawableIdString);
+		return context.getResources().openRawResource(drawableId);
+	}
+
+
+	/**
+	 * Retrieves {@link InputStream} of image by URI (image is located in drawable resources of application).
+	 *
+	 * @param imageUri Image URI
+	 * @param extra    Auxiliary object which was passed to {@link DisplayImageOptions.Builder#extraForDownloader(Object)
+	 *                 DisplayImageOptions.extraForDownloader(Object)}; can be null
+	 * @return {@link InputStream} of image
+	 */
+	protected InputStream getStreamFromDrawableName(String imageUri, Object extra) {
+		String drawableIdString = Scheme.DRAWABLENAME.crop(imageUri);
+		int drawableId = context.getResources().getIdentifier(drawableIdString, "drawable", context.getPackageName());
 		return context.getResources().openRawResource(drawableId);
 	}
 
