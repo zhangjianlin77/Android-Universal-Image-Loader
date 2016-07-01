@@ -151,3 +151,6 @@ You can support the project and thank the author for his hard work :)
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+
+jar cvf imageloader1.9.5.jar -C  build/intermediates/classes/release .
